@@ -1,10 +1,10 @@
 const createTab = () => {
   const tab_wrap = document.createElement("div");
   const tab_area = document.createElement("div");
-  const tab_label_related = document.createElement("label");
+  const tab_label_relation = document.createElement("label");
   const tab_label_comments = document.createElement("label");
   const panel_area = document.createElement("div");
-  const panel_related = document.createElement("div");
+  const panel_relation = document.createElement("div");
   const panel_comments = document.createElement("div");
 
   tab_wrap.style.margin = "5px auto";
@@ -12,19 +12,19 @@ const createTab = () => {
   tab_area.style.fontSize = "0";
   tab_area.style.margin = "0 10px";
 
-  tab_label_related.textContent = "related";
-  tab_label_related.style.margin = "0 10px";
-  tab_label_related.style.width = "150px";
-  tab_label_related.style.margin = "0 5px";
-  tab_label_related.style.display = "inline-block";
-  tab_label_related.style.padding = "12px 0";
-  tab_label_related.style.color = "#999";
-  tab_label_related.style.background = "#fff";
-  tab_label_related.style.textAlign = "center";
-  tab_label_related.style.fontSize = "13px";
-  tab_label_related.style.cursor = "pointer";
-  tab_label_related.style.transition = "ease 0.2s opacity";
-  tab_label_related.setAttribute("class", "related");
+  tab_label_relation.textContent = "relation";
+  tab_label_relation.style.margin = "0 10px";
+  tab_label_relation.style.width = "150px";
+  tab_label_relation.style.margin = "0 5px";
+  tab_label_relation.style.display = "inline-block";
+  tab_label_relation.style.padding = "12px 0";
+  tab_label_relation.style.color = "#999";
+  tab_label_relation.style.background = "#fff";
+  tab_label_relation.style.textAlign = "center";
+  tab_label_relation.style.fontSize = "13px";
+  tab_label_relation.style.cursor = "pointer";
+  tab_label_relation.style.transition = "ease 0.2s opacity";
+  tab_label_relation.setAttribute("class", "relation");
 
   tab_label_comments.textContent = "comments";
   tab_label_comments.style.margin = "0 10px";
@@ -44,12 +44,12 @@ const createTab = () => {
   panel_area.style.height = window.innerHeight - 150 + "px";
   panel_area.style.background = "#fff";
 
-  panel_related.style.flexGrow = 1;
-  panel_related.style.flexBasis = 0;
-  panel_related.style.overflowY = "scroll";
-  panel_related.width = "100%";
-  panel_related.padding = "80px 0";
-  panel_related.display = "none";
+  panel_relation.style.flexGrow = 1;
+  panel_relation.style.flexBasis = 0;
+  panel_relation.style.overflowY = "scroll";
+  panel_relation.width = "100%";
+  panel_relation.padding = "80px 0";
+  panel_relation.display = "none";
 
   panel_comments.style.flexGrow = 1;
   panel_comments.style.flexBasis = 0;
@@ -63,50 +63,50 @@ const createTab = () => {
   const handleMouseOn = (event) => {
     event.target.style.opacity = "0.5";
   };
-  tab_label_related.addEventListener("mouseenter", handleMouseOn, false);
+  tab_label_relation.addEventListener("mouseenter", handleMouseOn, false);
   tab_label_comments.addEventListener("mouseenter", handleMouseOn, false);
 
   // mouse out
   const handleMouseOut = (event) => {
     event.target.style.opacity = "1";
   };
-  tab_label_related.addEventListener("mouseleave", handleMouseOut, false);
+  tab_label_relation.addEventListener("mouseleave", handleMouseOut, false);
   tab_label_comments.addEventListener("mouseleave", handleMouseOut, false);
 
   // click
   const handleClick = (event) => {
-    panel_related.style.display = "none";
+    panel_relation.style.display = "none";
     panel_comments.style.display = "none";
-    tab_label_related.style.background = "#ddd";
+    tab_label_relation.style.background = "#ddd";
     tab_label_comments.style.background = "#ddd";
     class_name = event.target.className;
 
-    if (class_name == "related") {
-      panel_related.style.display = "block";
-      tab_label_related.style.background = "#fff";
+    if (class_name == "relation") {
+      panel_relation.style.display = "block";
+      tab_label_relation.style.background = "#fff";
     } else {
       panel_comments.style.display = "block";
       tab_label_comments.style.background = "#fff";
     }
   };
-  tab_label_related.addEventListener("click", handleClick, false);
+  tab_label_relation.addEventListener("click", handleClick, false);
   tab_label_comments.addEventListener("click", handleClick, false);
 
-  tab_area.appendChild(tab_label_related);
+  tab_area.appendChild(tab_label_relation);
   tab_area.appendChild(tab_label_comments);
-  panel_area.appendChild(panel_related);
+  panel_area.appendChild(panel_relation);
   panel_area.appendChild(panel_comments);
   tab_wrap.appendChild(tab_area);
   tab_wrap.appendChild(panel_area);
 
-  const setRelatedPanel = (child) => {
-    panel_related.appendChild(child);
+  const setRelationPanel = (child) => {
+    panel_relation.appendChild(child);
   };
   const setCommentPanel = (child) => {
     panel_comments.append(child);
   };
 
-  return { tab_wrap, setRelatedPanel, setCommentPanel };
+  return { tab_wrap, setRelationPanel, setCommentPanel };
 };
 
 window.onload = function () {
@@ -116,18 +116,18 @@ window.onload = function () {
 
   const columns = document.getElementById("columns");
   const video = document.getElementById("primary");
-  const related = document.getElementById("secondary");
+  const relation = document.getElementById("secondary");
   const comments = document.getElementById("comments");
 
   columns.setAttribute("class", "unknown");
   columns.style.display = "flex";
   columns.style.height = window_h - 56 + "px";
 
-  related.style.height = window_h;
+  relation.style.height = window_h;
   comments.style.height = window_h;
 
-  const { tab_wrap, setRelatedPanel, setCommentPanel } = createTab();
-  setRelatedPanel(related);
+  const { tab_wrap, setRelationPanel, setCommentPanel } = createTab();
+  setRelationPanel(relation);
   setCommentPanel(comments);
 
   const right = document.createElement("div");
